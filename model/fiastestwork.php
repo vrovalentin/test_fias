@@ -174,4 +174,37 @@ class fiastestwork
         }
         return $connection;
     }
+
+    /*
+     * Записываем в MariaDB
+     */
+    public static function insert2MariaDb($params)
+    {
+        if(!$connection = self::getMconnection()) {
+            die("Не установлено соединение с БД");
+        }
+
+        foreach ($params["arelement"] as $element) {
+            $ins_element =  $element["ccity"].": ".$element["city"]."; ".$element["cstreet"].": ".$element["street"]."; ".$element["chouse"].": ".$element["house"];
+            $query = "INSERT INTO fias_address (adress) VALUES ('{$ins_element}')";
+            if(!mysqli_query($connection, $query)) {
+                $err = mysqli_error($connection);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*
+     *
+     */
+    private static function getMconnection()
+    {
+        $connection = mysqli_connect("localhost", "root", "", "test_fias");
+        if (!$connection)
+        {
+            return false;
+        }
+        return $connection;
+    }
 }

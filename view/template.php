@@ -25,6 +25,9 @@ $arRegions = fiastestwork::getRegions();
                 </fieldset>
             </form>
             <div class="result-window"></div>
+            <div class="save-result-row">
+                <div class="stbtn" id="save_2maria">Сохранить в MariaDB</div>
+            </div>
         </div>
     </body>
 </html>

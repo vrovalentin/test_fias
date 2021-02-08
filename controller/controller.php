@@ -1,6 +1,6 @@
 <?php
 
-    $arFIlter = ["SEARCH"];
+    $arFIlter = ["SEARCH","INSERT_2MARIA"];
 
     if(in_array($_POST["type"],$arFIlter)) {
 
@@ -12,6 +12,13 @@
 
             if(count($arSearchResult)) {
                 echo json_encode(fiastestwork::normalizeResul($arSearchResult));
+            } else {
+                echo false;
+            }
+            die();
+        } elseif ($_POST["type"] == "INSERT_2MARIA") {
+            if(fiastestwork::insert2MariaDb($_POST)) {
+                echo true;
             } else {
                 echo false;
             }
